@@ -1,0 +1,30 @@
+---
+specversion: 0.0.2
+id: bitscout-rsyslog-collector-app
+
+metadata:
+  name: rsyslog collector for BitScout
+  appversion: 0.0.1
+  description: BitScout implementation of using rsyslog as a logging collecor for Elasticsearch
+
+graph:
+  - name: bitscout-rsyslog-collector
+    params:
+      - name: appname
+        description: Name given to docker run --name
+        default: bitscout-rsyslog-collector
+      - name: image
+        description: Image to run
+        default: bitscout/rsyslog-collector:latest
+      - name: qpidhost
+        description: host/ip addr to use to connect to qpid - works with link_qpid below
+        default: bitscout-qpid-router
+      - name: link_qpid
+        description: Use --link bitscout-qpid-router
+        default: "--link bitscout-qpid-router"
+      - name: syslog_listen_port
+        description: port for syslog listener to listen to
+        default: 5141
+    artifacts:
+      docker:
+        - file://artifacts/docker/run
