@@ -1,1 +1,1 @@
-docker run -d -p $syslog_listen_port:$syslog_listen_port/udp $link_qpid -e QP_HOST=$qpidhost --name $appname $image
+docker run -d  -p $syslog_listen_port:$syslog_listen_port/tcp -p $syslog_listen_port:$syslog_listen_port/udp $link_qpid -e QP_HOST=$qpidhost --name $appname $image
